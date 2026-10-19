@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Bach Chorale Explorer</title>
+  <meta name="description" content="Search the 370 four-part chorales of J.S. Bach by melody, harmony, or text. View the score and play it back.">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>𝄞</text></svg>">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&family=EB+Garamond:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="masthead">
+    <div class="ornament" aria-hidden="true">❦</div>
+    <h1>Bach Chorale Explorer</h1>
+    <p class="subtitle">The 370 four-part chorales of Johann Sebastian Bach &mdash; searchable by melody, harmony &amp; text</p>
+    <p id="status" class="status" role="status">Loading&hellip;</p>
+  </header>
+
+  <main class="layout">
+    <section class="panel search-panel" aria-label="Search">
+      <div class="modes" role="tablist">
+        <button role="tab" data-mode="text" aria-selected="true">Text</button>
+        <button role="tab" data-mode="melody" aria-selected="false">Melody</button>
+        <button role="tab" data-mode="harmony" aria-selected="false">Harmony</button>
+      </div>
+
+      <form id="search-form" autocomplete="off">
+        <label for="q" id="q-label" class="visually-hidden">Search</label>
+        <input id="q" type="search" placeholder="Title, BWV, or number">
+        <button type="submit" class="primary">Search</button>
+      </form>
+      <p id="hint" class="hint"></p>
+      <div id="examples" class="examples"></div>
+
+      <p id="result-count" class="result-count"></p>
+      <ol id="results" class="results"></ol>
+    </section>
+
+    <section class="panel viewer" aria-label="Score">
+      <div id="empty" class="empty">
+        <p class="ornament" aria-hidden="true">𝄞</p>
+        <p>Choose a chorale to see its score.</p>
+      </div>
+      <article id="piece" hidden>
+        <div class="piece-head">
+          <div>
+            <h2 id="piece-title"></h2>
+            <p id="piece-sub" class="piece-sub"></p>
+            <p id="piece-meta" class="piece-meta"></p>
+          </div>
+          <div class="controls">
+            <button id="play" class="primary" type="button">▶ Play</button>
+            <button id="midi" type="button" title="Download as a MIDI file">⤓ MIDI</button>
+          </div>
+        </div>
+        <p id="match-note" class="match-note"></p>
+        <div id="score" class="score" aria-label="Score"></div>
+        <details class="harmony-strip">
+          <summary>Harmonic outline (automatic analysis)</summary>
+          <p id="chords"></p>
+        </details>
+      </article>
+    </section>
+  </main>
+
+  <footer class="colophon">
+    <p>Encodings: <a href="https://github.com/craigsapp/bach-370-chorales">370 Bach Chorales</a>, &copy; Craig Stuart Sapp, CC BY-NC-SA 4.0.
+      Engraving by <a href="https://www.verovio.org">Verovio</a>. Harmonic labels are computed automatically and are approximate.</p>
+  </footer>
+
+  <script type="module" src="app.js"></script>
+</body>
+</html>
