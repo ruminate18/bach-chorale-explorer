@@ -1,0 +1,152 @@
+:root {
+  --paper: #f5ecd9;
+  --paper-deep: #ecdfc3;
+  --card: #fbf6ea;
+  --ink: #2a1f16;
+  --ink-soft: #6a5844;
+  --rule: #d6c39f;
+  --accent: #7b2d26;
+  --accent-ink: #fbf6ea;
+  --gold: #a8843f;
+  --hl: #b3261e;
+  --serif-display: "Cormorant Garamond", "Garamond", Georgia, serif;
+  --serif: "EB Garamond", "Garamond", Georgia, serif;
+}
+
+* { box-sizing: border-box; }
+
+html, body { margin: 0; }
+
+body {
+  background: var(--paper);
+  background-image: radial-gradient(ellipse at top, #fbf3e2 0%, var(--paper) 60%, var(--paper-deep) 100%);
+  background-attachment: fixed;
+  color: var(--ink);
+  font-family: var(--serif);
+  font-size: 18px;
+  line-height: 1.45;
+  min-height: 100vh;
+}
+
+a { color: var(--accent); }
+
+.visually-hidden {
+  position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0);
+}
+
+/* Masthead */
+.masthead {
+  text-align: center;
+  padding: 2.2rem 16px 1.2rem;
+  border-bottom: 1px solid var(--rule);
+  margin: 0 auto;
+  max-width: 1400px;
+}
+.masthead h1 {
+  font-family: var(--serif-display);
+  font-weight: 600;
+  font-size: clamp(2.2rem, 5vw, 3.4rem);
+  letter-spacing: 0.02em;
+  margin: 0.1rem 0 0.2rem;
+}
+.ornament { color: var(--gold); font-size: 1.6rem; margin: 0; line-height: 1; }
+.subtitle { font-style: italic; color: var(--ink-soft); margin: 0; }
+.status { font-size: 0.9rem; color: var(--ink-soft); margin: 0.6rem 0 0; min-height: 1.3em; }
+
+/* Layout */
+.layout {
+  display: grid;
+  grid-template-columns: minmax(300px, 380px) 1fr;
+  gap: 24px;
+  max-width: 1400px;
+  margin: 24px auto;
+  padding: 0 16px;
+  align-items: start;
+}
+.panel {
+  background: var(--card);
+  border: 1px solid var(--rule);
+  border-radius: 4px;
+  box-shadow: 0 1px 0 #fff inset, 0 6px 20px rgba(80, 55, 20, 0.08);
+  padding: 18px;
+  min-width: 0;
+}
+.search-panel > * { flex-shrink: 0; }
+.search-panel { position: sticky; top: 16px; max-height: calc(100vh - 32px); display: flex; flex-direction: column; }
+
+/* Mode tabs */
+.modes { display: flex; border: 1px solid var(--rule); border-radius: 3px; overflow: hidden; margin-bottom: 12px; }
+.modes button {
+  flex: 1; border: 0; background: transparent; padding: 8px 4px; cursor: pointer;
+  font-family: var(--serif-display); font-size: 1.15rem; font-weight: 600; color: var(--ink-soft);
+}
+.modes button + button { border-left: 1px solid var(--rule); }
+.modes button[aria-selected="true"] { background: var(--accent); color: var(--accent-ink); }
+
+/* Form */
+form { display: flex; gap: 8px; }
+input[type="search"] {
+  flex: 1; min-width: 0;
+  font: inherit; color: var(--ink);
+  background: #fffdf7; border: 1px solid var(--rule); border-radius: 3px;
+  padding: 8px 10px;
+}
+input[type="search"]:focus { outline: 2px solid var(--gold); outline-offset: 1px; }
+button {
+  font: inherit; font-size: 1rem; cursor: pointer;
+  border: 1px solid var(--rule); background: #fffdf7; color: var(--ink);
+  border-radius: 3px; padding: 7px 12px;
+}
+button:hover { border-color: var(--gold); }
+button.primary { background: var(--accent); border-color: var(--accent); color: var(--accent-ink); }
+button.primary:hover { background: #64231d; }
+button:disabled { opacity: 0.5; cursor: default; }
+
+.hint { font-size: 0.92rem; color: var(--ink-soft); margin: 10px 0 6px; }
+.hint code, .match-note code { font-family: var(--serif); background: var(--paper); padding: 0 4px; border-radius: 2px; }
+.examples { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 10px; }
+.examples button { font-size: 0.88rem; padding: 2px 9px; border-radius: 999px; background: var(--paper); }
+
+.result-count { font-size: 0.9rem; color: var(--ink-soft); margin: 6px 0; border-top: 1px solid var(--rule); padding-top: 10px; }
+
+/* Results */
+.results { list-style: none; margin: 0; padding: 0; overflow-y: auto; flex: 1 1 auto; flex-shrink: 1; min-height: 120px; }
+.results li { border-bottom: 1px dotted var(--rule); }
+.results a {
+  display: block; padding: 8px 6px; text-decoration: none; color: var(--ink);
+}
+.results a:hover { background: var(--paper); }
+.results a[aria-current="true"] { background: var(--paper-deep); box-shadow: inset 3px 0 0 var(--accent); }
+.results .num { color: var(--gold); font-family: var(--serif-display); font-weight: 600; margin-right: 6px; }
+.results .t { font-weight: 500; }
+.results .meta { display: block; font-size: 0.85rem; color: var(--ink-soft); font-style: italic; }
+
+/* Viewer */
+.viewer { min-height: 60vh; }
+.empty { text-align: center; color: var(--ink-soft); padding: 18vh 0; }
+.empty .ornament { font-size: 4rem; }
+.piece-head { display: flex; justify-content: space-between; gap: 16px; align-items: flex-start; flex-wrap: wrap; border-bottom: 1px solid var(--rule); padding-bottom: 10px; }
+.piece-head h2 { font-family: var(--serif-display); font-weight: 600; font-size: 2rem; margin: 0; line-height: 1.1; }
+.piece-sub { font-style: italic; color: var(--ink-soft); margin: 2px 0 0; }
+.piece-meta { font-size: 0.92rem; color: var(--ink-soft); margin: 4px 0 0; }
+.controls { display: flex; gap: 8px; }
+.match-note { margin: 10px 0 0; font-size: 0.95rem; color: var(--hl); min-height: 1.2em; }
+
+.score { margin-top: 8px; overflow-x: auto; }
+.score svg { display: block; max-width: 100%; height: auto; margin: 0 auto; }
+.score svg g.note.match, .score svg g.note.match * { fill: var(--hl); stroke: var(--hl); }
+.score svg g.note.playing, .score svg g.note.playing * { fill: #1f5fa8; stroke: #1f5fa8; }
+
+.harmony-strip { margin-top: 14px; border-top: 1px solid var(--rule); padding-top: 8px; font-size: 0.95rem; }
+.harmony-strip summary { cursor: pointer; color: var(--ink-soft); }
+.harmony-strip p { word-spacing: 0.2em; line-height: 1.8; }
+.harmony-strip .bar { color: var(--gold); margin: 0 2px; }
+
+.colophon { text-align: center; font-size: 0.85rem; color: var(--ink-soft); padding: 8px 16px 32px; max-width: 900px; margin: 0 auto; }
+
+@media (max-width: 860px) {
+  .layout { grid-template-columns: 1fr; }
+  .search-panel { position: static; max-height: none; }
+  .results { max-height: 45vh; }
+  .piece-head h2 { font-size: 1.6rem; }
+}
