@@ -1,0 +1,15 @@
+Copyright (c) 2026 Rumi Nagpal. All rights reserved.
+
+The source code of this application (index.html, app.js, style.css) may not be
+copied, modified, or distributed without the express permission of the author.
+
+Third-party material
+--------------------
+The chorale encodings in data/chorales.krn are "A digital edition of 370 J.S. Bach
+Chorales", Copyright (C) 2009 Craig Stuart Sapp (https://github.com/craigsapp/bach-370-chorales),
+licensed under Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International
+(CC BY-NC-SA 4.0). See data/LICENSE-data.txt. They are redistributed here unmodified,
+except that the 370 files have been concatenated into one file.
+
+Music notation is rendered by Verovio (https://www.verovio.org, LGPL-3.0-or-later),
+loaded from the jsDelivr CDN at runtime.
